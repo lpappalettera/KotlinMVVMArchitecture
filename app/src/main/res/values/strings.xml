@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">News</string>
+
+    <!-- Error messages -->
+    <string name="error_network">Failed to fetch data from the server</string>
+    <string name="error_no_internet">No internet</string>
+    <string name="other_error">Something went wrong. Try again later</string>
+
+    <!-- News Overview -->
+    <string name="news_overview_title">News</string>
+
+    <!-- News item -->
+    <string name="news_item_title">News item</string>
+
+</resources>

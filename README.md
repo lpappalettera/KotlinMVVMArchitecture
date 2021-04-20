@@ -6,10 +6,12 @@ Sample project that contains [Google's recommended app architecture](https://dev
 
 #### Setup
 The app uses [NewsApi](https://newsapi.org/) as a data source. The api requires an APIKey which should be configured in your local.properties file as following:
-`newsApiKeyDev = <devProductFlavorApiKey>`
-`newsApiKeyTst = <tstProductFlavorApiKey>`
-`newsApiKeyAcc = <accProductFlavorApiKey>`
-`newsApiKeyPrd = <prdProductFlavorApiKey>`
+```
+newsApiKeyDev = <devProductFlavorApiKey>
+newsApiKeyTst = <tstProductFlavorApiKey>
+newsApiKeyAcc = <accProductFlavorApiKey>
+newsApiKeyPrd = <prdProductFlavorApiKey>
+```
 
 #### TODO
 * Replace Moshi with [Kotlin Serialization](https://blog.jetbrains.com/kotlin/2020/10/kotlinx-serialization-1-0-released/)

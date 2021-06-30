@@ -11,9 +11,8 @@ plugins {
 }
 
 android {
-
-    compileSdkVersion(30)
-    buildToolsVersion("30.0.3")
+    compileSdk = 30
+    buildToolsVersion = "30.0.3"
 
     buildFeatures {
         viewBinding = true
@@ -21,15 +20,15 @@ android {
 
     defaultConfig {
         applicationId = "app.mvvm.architecture"
-        minSdkVersion(26)
-        targetSdkVersion(30)
+        minSdk = 26
+        targetSdk = 30
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
         }
         javaCompileOptions {
             annotationProcessorOptions {
@@ -42,15 +41,11 @@ android {
             }
         }
         kotlinOptions {
-            jvmTarget = "1.8"
+            jvmTarget = "11"
         }
 
         testOptions {
             unitTests.isReturnDefaultValues = true
-        }
-
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
     }
 
@@ -67,7 +62,7 @@ android {
 
     val newsApiKey = "NEWS_API_KEY"
 
-    flavorDimensions("default")
+    flavorDimensions.add("default")
     productFlavors {
         create("dev") {
             applicationIdSuffix = ".dev"
@@ -180,15 +175,15 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 // For flavors usage
-fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigBoolean(
+fun com.android.build.api.dsl.ApplicationProductFlavor.buildConfigBoolean(
     name: String,
     value: Boolean
 ) = buildConfigField("Boolean", name, value.toString())
 
-fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigString(
+fun com.android.build.api.dsl.ApplicationProductFlavor.buildConfigString(
     name: String,
     value: String
 ) = buildConfigField("String", name, "\"$value\"")
 
-fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigInt(name: String, value: Int) =
+fun com.android.build.api.dsl.ApplicationProductFlavor.buildConfigInt(name: String, value: Int) =
     buildConfigField("int", name, "$value")

@@ -13,8 +13,7 @@ import app.mvvm.architecture.util.ComposedAdapter
 import app.mvvm.architecture.util.Resource
 import app.mvvm.architecture.util.extensions.FragmentExtensions.viewBinding
 import app.mvvm.architecture.util.viewHolderFrom
-import org.koin.android.viewmodel.ext.android.viewModel
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsOverviewFragment : Fragment(R.layout.fragment_news_overview) {
 

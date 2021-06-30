@@ -14,10 +14,6 @@ android {
     compileSdk = 30
     buildToolsVersion = "30.0.3"
 
-    buildFeatures {
-        viewBinding = true
-    }
-
     defaultConfig {
         applicationId = "app.mvvm.architecture"
         minSdk = 26
@@ -26,10 +22,6 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
-        }
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments(
@@ -40,13 +32,19 @@ android {
                 )
             }
         }
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_11.toString()
-        }
-
-        testOptions {
-            unitTests.isReturnDefaultValues = true
-        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+    testOptions {
+        unitTests.isReturnDefaultValues = true
     }
 
     buildTypes {
@@ -85,21 +83,17 @@ android {
 
 dependencies {
 
-    // Kotlin
-    val kotlinVersion: String by rootProject.extra
-    implementation(kotlin("stdlib", kotlinVersion))
-
     // Coroutines
     val coroutinesVersion = "1.4.2"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.fragment:fragment-ktx:1.3.2")
+    implementation("androidx.core:core-ktx:1.5.0")
+    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.fragment:fragment-ktx:1.3.5")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-    implementation("androidx.recyclerview:recyclerview:1.2.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.browser:browser:1.3.0")
 
     // Navigation components
@@ -139,7 +133,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
 
     // Moshi
-    val moshiVersion = "1.11.0"
+    val moshiVersion = "1.12.0"
     implementation("com.squareup.moshi:moshi:$moshiVersion")
     kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
 
@@ -149,10 +143,10 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
 
-    // KOIN
-    val koinVersion = "2.2.2"
-    implementation("org.koin:koin-android:$koinVersion")
-    implementation("org.koin:koin-android-viewmodel:$koinVersion")
+    // Koin
+    val koinVersion = "2.2.3"
+    implementation("io.insert-koin:koin-android:$koinVersion")
+    implementation("io.insert-koin:koin-androidx-viewmodel:$koinVersion")
 
     // Unit testing
     testImplementation("junit:junit:4.13.2")

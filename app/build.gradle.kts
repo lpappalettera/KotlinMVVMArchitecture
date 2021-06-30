@@ -7,6 +7,7 @@ plugins {
     kotlin("kapt")
     id("kotlin-android")
     id("kotlin-parcelize")
+    id("kotlinx-serialization")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -24,11 +25,9 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments(
-                    mutableMapOf(
-                        Pair("room.incremental", "true"),
-                        Pair("room.expandProjection", "true")
-                    )
+                arguments += mapOf(
+                    "room.incremental" to "true",
+                    "room.expandProjection" to "true"
                 )
             }
         }
@@ -88,6 +87,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
 
+    // Kotlin Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
+
+
     // AndroidX
     implementation("androidx.core:core-ktx:1.5.0")
     implementation("androidx.appcompat:appcompat:1.3.0")
@@ -125,20 +128,15 @@ dependencies {
     // Retrofit
     val retrofitVersion = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
     // OkHttp
     val okHttpVersion = "4.9.0"
     implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
 
-    // Moshi
-    val moshiVersion = "1.12.0"
-    implementation("com.squareup.moshi:moshi:$moshiVersion")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
-
     // Room
-    val roomVersion = "2.2.5"
+    val roomVersion = "2.3.0"
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")

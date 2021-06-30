@@ -14,6 +14,5 @@ newsApiKeyPrd = <prdProductFlavorApiKey>
 ```
 
 #### TODO
-* Replace Moshi with [Kotlin Serialization](https://blog.jetbrains.com/kotlin/2020/10/kotlinx-serialization-1-0-released/)
 * Add Unit Tests
 * Add UI Tests

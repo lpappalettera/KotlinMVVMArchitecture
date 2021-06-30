@@ -39,7 +39,7 @@ class NewsOverviewFragment : Fragment(R.layout.fragment_news_overview) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerviewCountries.adapter = adapter
+        binding.newsItemsRecyclerView.adapter = adapter
 
         newsOverviewViewModel.newsLiveData.observe(viewLifecycleOwner) { newsResource ->
             if (newsResource is Resource.Loading)
@@ -48,8 +48,8 @@ class NewsOverviewFragment : Fragment(R.layout.fragment_news_overview) {
                 binding.progressBar.hide()
 
             newsResource.error?.getContentIfNotHandled()?.showSnackBar(view)
-            newsResource.data?.let { countries ->
-                adapter.update(countries) {
+            newsResource.data?.let { newsItems ->
+                adapter.update(newsItems) {
                     it.title + it.author
                 }
             }

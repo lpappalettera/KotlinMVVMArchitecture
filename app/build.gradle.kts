@@ -138,9 +138,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
 
-    // Conscrypt
-    implementation("org.conscrypt:conscrypt-android:2.5.1")
-
     // Moshi
     val moshiVersion = "1.11.0"
     implementation("com.squareup.moshi:moshi:$moshiVersion")

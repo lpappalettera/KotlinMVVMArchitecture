@@ -41,7 +41,7 @@ android {
             }
         }
         kotlinOptions {
-            jvmTarget = "11"
+            jvmTarget = JavaVersion.VERSION_11.toString()
         }
 
         testOptions {

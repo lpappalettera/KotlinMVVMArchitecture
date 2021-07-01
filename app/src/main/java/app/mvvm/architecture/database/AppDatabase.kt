@@ -25,8 +25,8 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         private const val dbName = "news.db"
 
-        val instance: AppDatabase by lazy {
-            Room.databaseBuilder(
+        fun build(): AppDatabase {
+            return Room.databaseBuilder(
                 appCtx,
                 AppDatabase::class.java,
                 dbName

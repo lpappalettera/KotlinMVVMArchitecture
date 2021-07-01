@@ -3,7 +3,7 @@ buildscript {
     val kotlinVersion: String by extra("1.5.20")
     val composeVersion: String by extra("1.0.0-beta09")
     val hiltVersion: String by extra("2.37")
-    val navigationVersion: String by extra("2.3.2")
+    val navigationVersion: String by extra("2.4.0-alpha03")
 
     repositories {
         google()

@@ -9,12 +9,12 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DaoModule {
+object DatabaseModule {
     @Provides
-    fun provideAppDatabase(): AppDatabase = AppDatabase.instance
+    fun provideAppDatabase(): AppDatabase = AppDatabase.build()
 
     @Provides
-    fun provideNewsyDao(appDatabase: AppDatabase): NewsDao {
+    fun provideNewsDao(appDatabase: AppDatabase): NewsDao {
         return appDatabase.newsDao()
     }
 }

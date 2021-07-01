@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    val kotlinVersion: String by extra("1.5.20")
+    val kotlinVersion: String by extra("1.5.10")
     val composeVersion: String by extra("1.0.0-beta09")
     val hiltVersion: String by extra("2.37")
     val navigationVersion: String by extra("2.4.0-alpha03")

@@ -14,6 +14,7 @@ import app.mvvm.architecture.util.ComposedAdapter
 import app.mvvm.architecture.util.Resource
 import app.mvvm.architecture.util.extensions.FragmentExtensions.viewBinding
 import app.mvvm.architecture.util.viewHolderFrom
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,7 +50,9 @@ class NewsOverviewFragment : Fragment(R.layout.fragment_news_overview) {
             else
                 binding.progressBar.hide()
 
-            newsResource.error?.getContentIfNotHandled()?.showSnackBar(view)
+            newsResource.error?.getContentIfNotHandled()?.apply {
+                Snackbar.make(view, getString(errorMessage), Snackbar.LENGTH_SHORT).show()
+            }
             newsResource.data?.let { newsItems ->
                 adapter.update(newsItems) {
                     it.title + it.author

@@ -154,14 +154,6 @@ dependencies {
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")
 
-    // Splitties
-    val splittiesVersion = "3.0.0-beta01"
-    implementation("com.louiscad.splitties:splitties-fun-pack-android-base:$splittiesVersion")
-    implementation("com.louiscad.splitties:splitties-fun-pack-android-material-components:$splittiesVersion")
-    implementation("com.louiscad.splitties:splitties-arch-lifecycle:$splittiesVersion")
-    implementation("com.louiscad.splitties:splitties-typesaferecyclerview:$splittiesVersion")
-    implementation("com.louiscad.splitties:splitties-exceptions:$splittiesVersion")
-
     // Retrofit
     val retrofitVersion = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")

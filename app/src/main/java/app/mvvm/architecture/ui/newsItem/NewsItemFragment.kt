@@ -8,7 +8,6 @@ import app.mvvm.architecture.R
 import app.mvvm.architecture.databinding.FragmentNewsItemBinding
 import app.mvvm.architecture.util.extensions.FragmentExtensions.viewBinding
 
-
 class NewsItemFragment : Fragment(R.layout.fragment_news_item) {
 
     private val args: NewsItemFragmentArgs by navArgs()

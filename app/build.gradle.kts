@@ -8,6 +8,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-parcelize")
     id("kotlinx-serialization")
+    id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -80,6 +81,16 @@ android {
     }
 }
 
+kapt {
+    javacOptions {
+        // NOTE: Workaround for a kapt bug: https://github.com/google/dagger/issues/2684
+        // These options are normally set automatically via the Hilt Gradle plugin, but we
+        // set them manually to workaround a bug in the Kotlin 1.5.20.
+        option("-Adagger.fastInit=ENABLED")
+        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+    }
+}
+
 dependencies {
 
     // Coroutines
@@ -114,6 +125,20 @@ dependencies {
     // Android Material
     implementation("com.google.android.material:material:1.3.0")
 
+    // App Startup
+    implementation("androidx.startup:startup-runtime:1.0.0")
+
+    // Dagger Hilt
+    val hiltVersion: String by rootProject.extra
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    kapt("com.google.dagger:hilt-compiler:$hiltVersion")
+    // Dagger Hilt for instrumentation tests
+    androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:$hiltVersion")
+    // Dagger Hilt for local unit tests
+    testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    kaptTest("com.google.dagger:hilt-compiler:$hiltVersion")
+
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")
 
@@ -140,11 +165,6 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
-
-    // Koin
-    val koinVersion = "2.2.3"
-    implementation("io.insert-koin:koin-android:$koinVersion")
-    implementation("io.insert-koin:koin-androidx-viewmodel:$koinVersion")
 
     // Unit testing
     testImplementation("junit:junit:4.13.2")

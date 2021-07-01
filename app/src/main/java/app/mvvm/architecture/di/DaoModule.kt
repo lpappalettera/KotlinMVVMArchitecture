@@ -2,15 +2,19 @@ package app.mvvm.architecture.di
 
 import app.mvvm.architecture.database.AppDatabase
 import app.mvvm.architecture.database.dao.NewsDao
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@Module
+@InstallIn(SingletonComponent::class)
 object DaoModule {
-    val daoModule = module {
-        single { AppDatabase.instance }
-        single { getNewsyDao(get()) }
-    }
+    @Provides
+    fun provideAppDatabase(): AppDatabase = AppDatabase.instance
 
-    private fun getNewsyDao(appDatabase: AppDatabase): NewsDao {
+    @Provides
+    fun provideNewsyDao(appDatabase: AppDatabase): NewsDao {
         return appDatabase.newsDao()
     }
 }

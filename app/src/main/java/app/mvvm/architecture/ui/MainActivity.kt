@@ -7,7 +7,9 @@ import androidx.navigation.ui.NavigationUI
 import app.mvvm.architecture.R
 import app.mvvm.architecture.databinding.ActivityMainBinding
 import app.mvvm.architecture.util.extensions.ActivityExtensions.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityMainBinding::inflate)

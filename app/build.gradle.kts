@@ -9,7 +9,6 @@ plugins {
     id("kotlin-parcelize")
     id("kotlinx-serialization")
     id("dagger.hilt.android.plugin")
-    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -98,7 +97,7 @@ kapt {
 
 dependencies {
 
-    // Coroutines
+    // Kotlin Coroutines
     val coroutinesVersion = "1.4.2"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
@@ -114,29 +113,6 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.browser:browser:1.3.0")
 
-    // Jetpack Compose
-    val composeVersion: String by rootProject.extra
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
-    implementation("androidx.activity:activity-compose:1.3.0-beta02")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
-
-    // Navigation components
-    val navigationVersion: String by rootProject.extra
-    implementation("androidx.navigation:navigation-fragment-ktx:$navigationVersion")
-    implementation("androidx.navigation:navigation-ui-ktx:$navigationVersion")
-
-    // Lifecycle components
-    val lifecycleVersion = "2.2.0"
-    implementation("androidx.lifecycle:lifecycle-runtime:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-
-    // Android Material
-    implementation("com.google.android.material:material:1.3.0")
-
     // App Startup
     implementation("androidx.startup:startup-runtime:1.0.0")
 
@@ -150,6 +126,37 @@ dependencies {
     // Dagger Hilt for local unit tests
     testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
     kaptTest("com.google.dagger:hilt-compiler:$hiltVersion")
+
+    // Jetpack Compose
+    val composeVersion: String by rootProject.extra
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation("androidx.activity:activity-compose:1.3.0-rc01")
+    androidTestImplementation("androidx.compose.ui:ui-test:$composeVersion")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
+
+    // Compose Material
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.material:material-icons-extended:$composeVersion")
+
+    // Android Material
+    implementation("com.google.android.material:material:1.3.0")
+
+    // Compose Navigation
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha03")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
+
+    // Lifecycle Components
+    val lifecycleVersion = "2.3.1"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+
+    // Accompanist
+    val accompanistVersion = "0.13.0"
+    implementation("com.google.accompanist:accompanist-insets:$accompanistVersion")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
+    implementation("com.google.accompanist:accompanist-swiperefresh:$accompanistVersion")
 
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")

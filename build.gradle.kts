@@ -3,7 +3,6 @@ buildscript {
     val kotlinVersion: String by extra("1.5.10")
     val composeVersion: String by extra("1.0.0-beta09")
     val hiltVersion: String by extra("2.37")
-    val navigationVersion: String by extra("2.4.0-alpha03")
 
     repositories {
         google()
@@ -15,7 +14,6 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
         classpath("com.google.dagger:hilt-android-gradle-plugin:$hiltVersion")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion")
     }
 }
 

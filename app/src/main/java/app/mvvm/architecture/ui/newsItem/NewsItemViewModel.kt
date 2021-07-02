@@ -1,4 +1,4 @@
-package app.mvvm.architecture.ui.newsOverview
+package app.mvvm.architecture.ui.newsItem
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,21 +15,17 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class NewsOverviewViewModel @Inject constructor(
+class NewsItemViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<Resource<List<NewsItem>>>(Resource.Loading())
-    val state: StateFlow<Resource<List<NewsItem>>> = _state
+    private val _state = MutableStateFlow<Resource<NewsItem>>(Resource.Loading())
+    val state: StateFlow<Resource<NewsItem>> = _state
 
-    init {
-        loadNews()
-    }
-
-    fun loadNews() {
+    fun loadNewsItem(id: String) {
         viewModelScope.launch {
-            newsRepository.getNews().collect { news ->
-                _state.emit(news)
+            newsRepository.getNewsItem(id).collect { newsItem ->
+                _state.emit(newsItem)
             }
         }
     }

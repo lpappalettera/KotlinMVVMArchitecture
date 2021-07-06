@@ -56,7 +56,7 @@ fun NewsOverviewScreen(
             modifier = Modifier.padding(innerPadding),
             state = state,
             onRefresh = viewModel::loadNews,
-            onNewsItemClick = { item -> navigateToNewsItem(item.id.identifier) },
+            onNewsItemClick = { item -> navigateToNewsItem(item.id) },
         )
     }
 }

@@ -32,8 +32,7 @@ class NewsRepository(
     }.flowOn(Dispatchers.IO)
 
     fun getNewsItem(id: String) = flow<Resource<NewsItem>> {
-        val (author, title) = NewsItem.CompositeKey.fromIdentifier(id)
-        emitAll(newsDao.getFlow(author, title).map { Resource.Success(it) })
+        emitAll(newsDao.getFlow(id).map { Resource.Success(it) })
     }.catch { throwable ->
         emit(Resource.Error(throwable.logAndMapToErrorType(), null))
     }.flowOn(Dispatchers.IO)

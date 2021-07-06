@@ -2,10 +2,12 @@ package app.mvvm.architecture.model
 
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import java.time.OffsetDateTime
+import java.util.*
 
-@Entity(primaryKeys= ["author", "title"])
+@Entity
 @Parcelize
 data class NewsItem(
     val author: String,
@@ -14,23 +16,11 @@ data class NewsItem(
     val url: String,
     val urlToImage: String?,
     val publishedAt: OffsetDateTime,
-    val content: String?
+    val content: String?,
+    // NOTE: This project intends to show the android project architecture and setup, not the news
+    // api. Since an article of the news api doesn't have an id, we simply generate one for local
+    // use.
+    @PrimaryKey
+    val id: String = UUID.randomUUID().toString(),
 ): Parcelable {
-    val id: CompositeKey
-        get() = CompositeKey(author, title)
-
-    data class CompositeKey(val author: String, val title: String) {
-        val identifier
-            get() = listOf(author, title).joinToString(SEPARATOR)
-
-        companion object {
-            private const val SEPARATOR = "__"
-
-            fun fromIdentifier(identifier: String): CompositeKey {
-                val fields = identifier.split(SEPARATOR)
-                require(fields.size == 2)
-                return CompositeKey(fields[0], fields[1])
-            }
-        }
-    }
 }

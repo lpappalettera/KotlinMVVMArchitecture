@@ -42,7 +42,7 @@ fun NavGraph(
         }
         composable(Screen.NewsItem("{${Screen.NewsItem.ArgKey.id}}").route) { backStackEntry ->
             NewsItemScreen(
-                viewModel = hiltViewModel(),
+                viewModel = hiltViewModel(backStackEntry),
                 newsItemId =
                     requireNotNull(backStackEntry.arguments?.getString(Screen.NewsItem.ArgKey.id)),
                 navigateUp = actions.navigateUp,

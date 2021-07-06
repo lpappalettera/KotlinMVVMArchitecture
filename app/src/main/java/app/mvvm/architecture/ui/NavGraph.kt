@@ -9,7 +9,10 @@ import androidx.navigation.compose.composable
 
 import androidx.navigation.compose.rememberNavController
 import app.mvvm.architecture.ui.newsItem.NewsItemScreen
+import app.mvvm.architecture.ui.newsItem.NewsItemViewModel
+import app.mvvm.architecture.ui.newsItem.NewsItemViewModel.Companion.provideFactory
 import app.mvvm.architecture.ui.newsOverview.NewsOverviewScreen
+import app.mvvm.architecture.util.assistedViewModel
 
 /**
  * Screens with their [route] used in the ([NewsApp]).
@@ -41,12 +44,13 @@ fun NavGraph(
             )
         }
         composable(Screen.NewsItem("{${Screen.NewsItem.ArgKey.id}}").route) { backStackEntry ->
-            NewsItemScreen(
-                viewModel = hiltViewModel(backStackEntry),
-                newsItemId =
-                    requireNotNull(backStackEntry.arguments?.getString(Screen.NewsItem.ArgKey.id)),
-                navigateUp = actions.navigateUp,
+            val newsItemId = requireNotNull(
+                backStackEntry.arguments?.getString(Screen.NewsItem.ArgKey.id)
             )
+            val viewModel = assistedViewModel<NewsItemViewModel> {
+                provideFactory(newsItemViewModelFactory(), newsItemId = newsItemId)
+            }
+            NewsItemScreen(viewModel = viewModel, navigateUp = actions.navigateUp)
         }
     }
 }

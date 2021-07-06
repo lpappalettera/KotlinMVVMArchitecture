@@ -18,13 +18,12 @@ import javax.inject.Inject
 class NewsOverviewViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel() {
-
-    private val _state = MutableStateFlow<Resource<List<NewsItem>>>(Resource.Loading())
-    val state: StateFlow<Resource<List<NewsItem>>> = _state
-
     init {
         loadNews()
     }
+
+    private val _state = MutableStateFlow<Resource<List<NewsItem>>>(Resource.Loading())
+    val state: StateFlow<Resource<List<NewsItem>>> = _state
 
     fun loadNews() {
         viewModelScope.launch {

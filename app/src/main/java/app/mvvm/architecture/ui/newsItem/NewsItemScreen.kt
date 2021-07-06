@@ -21,29 +21,19 @@ import app.mvvm.architecture.util.Resource
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import kotlinx.coroutines.launch
 
 @Composable
 fun NewsItemScreen(
     viewModel: NewsItemViewModel = viewModel(),
-    newsItemId: String,
     navigateUp: () -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
     val scaffoldState = rememberScaffoldState()
-    val coroutineScope = rememberCoroutineScope()
 
     state.error?.getContentIfNotHandled()?.let { error ->
         val errorMessage = stringResource(error.errorMessage)
         LaunchedEffect(scaffoldState.snackbarHostState) {
             scaffoldState.snackbarHostState.showSnackbar(errorMessage)
-        }
-    }
-
-    // Immediately load the news item.
-    LaunchedEffect(coroutineScope) {
-        coroutineScope.launch {
-            viewModel.loadNewsItem(newsItemId)
         }
     }
 
@@ -115,9 +105,6 @@ fun NewsItemText(newsItem: NewsItem) {
 @Composable
 fun PreviewNewsOverviewScreen() {
     NewsTheme {
-        NewsItemScreen(
-            newsItemId = "1",
-            navigateUp = {}
-        )
+        NewsItemScreen(navigateUp = {})
     }
 }

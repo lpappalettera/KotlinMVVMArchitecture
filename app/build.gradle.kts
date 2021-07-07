@@ -33,15 +33,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     buildFeatures {
-        viewBinding = true
         compose = true
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     testOptions {
         unitTests.isReturnDefaultValues = true
@@ -85,16 +84,6 @@ android {
     }
 }
 
-kapt {
-    javacOptions {
-        // NOTE: Workaround for a kapt bug: https://github.com/google/dagger/issues/2684
-        // These options are normally set automatically via the Hilt Gradle plugin, but we
-        // set them manually to workaround a bug in the Kotlin 1.5.20.
-        option("-Adagger.fastInit=ENABLED")
-        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
-    }
-}
-
 dependencies {
 
     // Kotlin Coroutines
@@ -131,12 +120,17 @@ dependencies {
     val composeVersion: String by rootProject.extra
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation("androidx.compose.foundation:foundation:$composeVersion")
+    implementation("androidx.compose.foundation:foundation-layout:$composeVersion")
+    implementation("androidx.compose.runtime:runtime:$composeVersion")
+    implementation("androidx.compose.animation:animation:$composeVersion")
     implementation("androidx.activity:activity-compose:1.3.0-rc01")
     androidTestImplementation("androidx.compose.ui:ui-test:$composeVersion")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
 
     // Compose Material
     implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.material:material-icons-core:$composeVersion")
     implementation("androidx.compose.material:material-icons-extended:$composeVersion")
 
     // Android Material

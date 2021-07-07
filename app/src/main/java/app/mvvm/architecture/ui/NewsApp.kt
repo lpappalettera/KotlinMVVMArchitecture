@@ -8,9 +8,6 @@ import app.mvvm.architecture.ui.theme.NewsTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-// TODO: Fix previews (with sample data)
-// Add tests
-
 @Composable
 fun NewsApp() {
     NewsTheme {

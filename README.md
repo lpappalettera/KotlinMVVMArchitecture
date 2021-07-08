@@ -6,6 +6,7 @@ A sample project setup that contains [Google's recommended app architecture](htt
 
 #### Setup
 The app uses [News Api](https://newsapi.org/) as a data source. The api requires an API key which should be configured in your local.properties file as following:
+
 ```
 newsApiKeyDev = <devProductFlavorApiKey>
 newsApiKeyTst = <tstProductFlavorApiKey>

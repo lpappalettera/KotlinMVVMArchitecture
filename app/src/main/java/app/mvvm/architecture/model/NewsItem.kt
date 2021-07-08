@@ -22,5 +22,4 @@ data class NewsItem(
     // use.
     @PrimaryKey
     val id: String = UUID.randomUUID().toString(),
-): Parcelable {
-}
+): Parcelable

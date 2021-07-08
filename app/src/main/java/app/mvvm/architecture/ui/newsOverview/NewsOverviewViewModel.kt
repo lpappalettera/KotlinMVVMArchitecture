@@ -9,9 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,13 +20,13 @@ class NewsOverviewViewModel @Inject constructor(
         loadNews()
     }
 
-    private val _state = MutableStateFlow<Resource<List<NewsItem>>>(Resource.Loading())
-    val state: StateFlow<Resource<List<NewsItem>>> = _state
+    private val _uiState = MutableStateFlow<Resource<List<NewsItem>>>(Resource.Loading())
+    val uiState: StateFlow<Resource<List<NewsItem>>> = _uiState
 
     fun loadNews() {
         viewModelScope.launch {
             newsRepository.getNews().collect { news ->
-                _state.emit(news)
+                _uiState.emit(news)
             }
         }
     }

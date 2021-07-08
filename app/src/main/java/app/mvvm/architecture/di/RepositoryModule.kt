@@ -3,6 +3,7 @@ package app.mvvm.architecture.di
 import app.mvvm.architecture.api.NewsApi
 import app.mvvm.architecture.database.dao.NewsDao
 import app.mvvm.architecture.repository.NewsRepository
+import app.mvvm.architecture.repository.NewsRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +15,6 @@ object RepositoryModule {
 
     @Provides
     fun provideNewsRepository(newsApi: NewsApi, newsDao: NewsDao): NewsRepository {
-        return NewsRepository(newsApi, newsDao)
+        return NewsRepositoryImpl(newsApi, newsDao)
     }
 }

@@ -23,13 +23,13 @@ class NewsItemViewModel @AssistedInject constructor(
         loadNewsItem()
     }
 
-    private val _state = MutableStateFlow<Resource<NewsItem>>(Resource.Loading())
-    val state: StateFlow<Resource<NewsItem>> = _state
+    private val _uiState = MutableStateFlow<Resource<NewsItem>>(Resource.Loading())
+    val uiState: StateFlow<Resource<NewsItem>> = _uiState
 
     private fun loadNewsItem() {
         viewModelScope.launch {
             newsRepository.getNewsItem(newsItemId).collect { newsItem ->
-                _state.emit(newsItem)
+                _uiState.emit(newsItem)
             }
         }
     }

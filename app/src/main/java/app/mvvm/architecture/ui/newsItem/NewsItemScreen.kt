@@ -10,14 +10,18 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import app.mvvm.architecture.R
 import app.mvvm.architecture.model.NewsItem
+import app.mvvm.architecture.sampleData.SampleData
+import app.mvvm.architecture.sampleData.newsItems
 import app.mvvm.architecture.ui.components.InsetAwareTopAppBar
 import app.mvvm.architecture.ui.theme.NewsTheme
 import app.mvvm.architecture.util.Resource
+import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -27,10 +31,18 @@ fun NewsItemScreen(
     viewModel: NewsItemViewModel = viewModel(),
     navigateUp: () -> Unit,
 ) {
-    val state by viewModel.state.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
+    NewsItemScreen(uiState = uiState, navigateUp = navigateUp)
+}
+
+@Composable
+fun NewsItemScreen(
+    uiState: Resource<NewsItem>,
+    navigateUp: () -> Unit,
+) {
     val scaffoldState = rememberScaffoldState()
 
-    state.error?.getContentIfNotHandled()?.let { error ->
+    uiState.error?.getContentIfNotHandled()?.let { error ->
         val errorMessage = stringResource(error.errorMessage)
         LaunchedEffect(scaffoldState.snackbarHostState) {
             scaffoldState.snackbarHostState.showSnackbar(errorMessage)
@@ -58,7 +70,7 @@ fun NewsItemScreen(
     ) { innerPadding ->
         NewsItemContent(
             modifier = Modifier.padding(innerPadding),
-            state = state,
+            state = uiState,
         )
     }
 }
@@ -105,6 +117,11 @@ fun NewsItemText(newsItem: NewsItem) {
 @Composable
 fun PreviewNewsOverviewScreen() {
     NewsTheme {
-        NewsItemScreen(navigateUp = {})
+        ProvideWindowInsets {
+            NewsItemScreen(
+                uiState = Resource.Success(SampleData.newsItems.first()),
+                navigateUp = {}
+            )
+        }
     }
 }

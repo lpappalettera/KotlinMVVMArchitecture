@@ -10,13 +10,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import java.util.concurrent.TimeUnit
 
-class NewsRepository(
+interface NewsRepository {
+    fun getNews(): Flow<Resource<List<NewsItem>>>
+    fun getNewsItem(id: String): Flow<Resource<NewsItem>>
+}
+
+class NewsRepositoryImpl(
     private val newsApi: NewsApi,
     private val newsDao: NewsDao,
-) {
+) : NewsRepository {
     private val newsRateLimit = RateLimiter<String>(10, TimeUnit.MINUTES)
 
-    fun getNews() = flow {
+    override fun getNews() = flow {
         val currentNews = newsDao.getAll()
         emit(Resource.Loading(currentNews))
         if (currentNews.isEmpty() || newsRateLimit.shouldFetch(NEWS_RATE_LIMIT_KEY)) {
@@ -31,7 +36,7 @@ class NewsRepository(
         })
     }.flowOn(Dispatchers.IO)
 
-    fun getNewsItem(id: String) = flow<Resource<NewsItem>> {
+    override fun getNewsItem(id: String) = flow<Resource<NewsItem>> {
         emitAll(newsDao.getFlow(id).map { Resource.Success(it) })
     }.catch { throwable ->
         emit(Resource.Error(throwable.logAndMapToErrorType(), null))

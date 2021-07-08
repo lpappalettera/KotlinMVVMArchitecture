@@ -134,10 +134,10 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:$composeVersion")
 
     // Android Material
-    implementation("com.google.android.material:material:1.3.0")
+    implementation("com.google.android.material:material:1.4.0")
 
     // Compose Navigation
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha03")
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha04")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
 
     // Lifecycle Components
@@ -179,8 +179,8 @@ dependencies {
     testImplementation("io.mockk:mockk:1.10.6")
 
     // Instrumentation testing
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
 
 tasks.withType<KotlinCompile>().configureEach {

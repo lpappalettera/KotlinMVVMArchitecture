@@ -1,16 +1,18 @@
 package app.mvvm.architecture.api.model
 
 import app.mvvm.architecture.model.NewsItem
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import java.time.OffsetDateTime
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class NewsItemDto(
         val author: String?,
         val title: String,
         val description: String?,
         val url: String,
         val urlToImage: String?,
+        @Contextual
         val publishedAt: OffsetDateTime,
         val content: String?
 ) {

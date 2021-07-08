@@ -1,24 +1,20 @@
 package app.mvvm.architecture.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
-import app.mvvm.architecture.R
-import app.mvvm.architecture.databinding.ActivityMainBinding
-import app.mvvm.architecture.util.extensions.ActivityExtensions.viewBinding
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.core.view.WindowCompat
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
-
-    private val binding by viewBinding(ActivityMainBinding::inflate)
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        NavigationUI.setupWithNavController(
-            binding.toolbar,
-            findNavController(R.id.mainNavHostFragment)
-        )
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        setContent {
+            NewsApp()
+        }
     }
 }

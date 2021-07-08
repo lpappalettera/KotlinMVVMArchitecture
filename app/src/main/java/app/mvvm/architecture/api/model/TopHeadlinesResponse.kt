@@ -1,11 +1,11 @@
 package app.mvvm.architecture.api.model
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class TopHeadlinesResponse(
    val status: String,
-   @Json(name = "articles")
+   @SerialName("articles")
    val newsItems: List<NewsItemDto>
 )

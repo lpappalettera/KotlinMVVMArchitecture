@@ -151,6 +151,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-insets:$accompanistVersion")
     implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
     implementation("com.google.accompanist:accompanist-swiperefresh:$accompanistVersion")
+    implementation("com.google.accompanist:accompanist-coil:$accompanistVersion")
 
     // Logging
     implementation("com.jakewharton.timber:timber:4.7.1")

@@ -1,6 +1,7 @@
 package app.mvvm.architecture.ui.newsItem
 
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -8,9 +9,10 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -21,6 +23,8 @@ import app.mvvm.architecture.sampleData.newsItems
 import app.mvvm.architecture.ui.components.InsetAwareTopAppBar
 import app.mvvm.architecture.ui.theme.NewsTheme
 import app.mvvm.architecture.util.Resource
+import com.google.accompanist.coil.rememberCoilPainter
+import com.google.accompanist.imageloading.ImageLoadState
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -103,11 +107,39 @@ fun NewsItemContent(
 @Composable
 fun NewsItemText(newsItem: NewsItem) {
     Text(text = newsItem.title, style = MaterialTheme.typography.h6)
+    if (newsItem.urlToImage != null) {
+        NewsItemImage(imageUrl = newsItem.urlToImage)
+    }
     if (newsItem.description != null) {
         Text(text = newsItem.description, style = MaterialTheme.typography.subtitle1)
     }
     if (newsItem.content != null) {
         Text(text = newsItem.content, style = MaterialTheme.typography.body1)
+    }
+}
+
+@Composable
+fun NewsItemImage(imageUrl: String) {
+    val painter = rememberCoilPainter(
+        request = imageUrl,
+        previewPlaceholder = R.drawable.news_item_placeholder,
+    )
+
+    Box(
+        modifier = Modifier
+            .aspectRatio(1.78f) // 16:9
+            .fillMaxWidth()
+    ) {
+        Image(
+            modifier = Modifier.fillMaxSize(),
+            painter = painter,
+            contentDescription = "",
+            contentScale = ContentScale.Crop,
+        )
+
+        if (painter.loadState is ImageLoadState.Loading) {
+            CircularProgressIndicator(Modifier.align(Alignment.Center))
+        }
     }
 }
 

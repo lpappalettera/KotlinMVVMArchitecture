@@ -82,6 +82,11 @@ android {
             buildConfigString(newsApiKey, localProperties.getProperty("newsApiKeyPrd"))
         }
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
+    }
 }
 
 dependencies {
@@ -127,6 +132,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.3.1")
     androidTestImplementation("androidx.compose.ui:ui-test:$composeVersion")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
 
     // Compose Material
     implementation("androidx.compose.material:material:$composeVersion")

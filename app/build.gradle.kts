@@ -82,6 +82,11 @@ android {
             buildConfigString(newsApiKey, localProperties.getProperty("newsApiKeyPrd"))
         }
     }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
+    }
 }
 
 dependencies {
@@ -96,14 +101,14 @@ dependencies {
 
     // AndroidX
     implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("androidx.fragment:fragment-ktx:1.3.5")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("androidx.fragment:fragment-ktx:1.3.6")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.browser:browser:1.3.0")
 
     // App Startup
-    implementation("androidx.startup:startup-runtime:1.0.0")
+    implementation("androidx.startup:startup-runtime:1.1.0")
 
     // Dagger Hilt
     val hiltVersion: String by rootProject.extra
@@ -124,9 +129,10 @@ dependencies {
     implementation("androidx.compose.foundation:foundation-layout:$composeVersion")
     implementation("androidx.compose.runtime:runtime:$composeVersion")
     implementation("androidx.compose.animation:animation:$composeVersion")
-    implementation("androidx.activity:activity-compose:1.3.0-rc01")
+    implementation("androidx.activity:activity-compose:1.3.1")
     androidTestImplementation("androidx.compose.ui:ui-test:$composeVersion")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
 
     // Compose Material
     implementation("androidx.compose.material:material:$composeVersion")
@@ -137,7 +143,7 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
 
     // Compose Navigation
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha04")
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha06")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
 
     // Lifecycle Components

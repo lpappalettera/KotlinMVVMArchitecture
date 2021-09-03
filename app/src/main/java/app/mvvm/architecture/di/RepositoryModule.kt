@@ -8,13 +8,18 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
+import kotlinx.coroutines.CoroutineDispatcher
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
 object RepositoryModule {
 
     @Provides
-    fun provideNewsRepository(newsApi: NewsApi, newsDao: NewsDao): NewsRepository {
-        return NewsRepositoryImpl(newsApi, newsDao)
+    fun provideNewsRepository(
+        newsApi: NewsApi,
+        newsDao: NewsDao,
+        @DispatcherDefault ioDispatcher: CoroutineDispatcher,
+    ): NewsRepository {
+        return NewsRepositoryImpl(newsApi, newsDao, ioDispatcher)
     }
 }

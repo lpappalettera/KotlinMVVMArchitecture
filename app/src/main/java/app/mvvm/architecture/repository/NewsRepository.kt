@@ -6,7 +6,7 @@ import app.mvvm.architecture.model.NewsItem
 import app.mvvm.architecture.util.RateLimiter
 import app.mvvm.architecture.util.Resource
 import app.mvvm.architecture.util.extensions.logAndMapToErrorType
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.*
 import java.util.concurrent.TimeUnit
 
@@ -18,6 +18,7 @@ interface NewsRepository {
 class NewsRepositoryImpl(
     private val newsApi: NewsApi,
     private val newsDao: NewsDao,
+    private val dispatcher: CoroutineDispatcher,
 ) : NewsRepository {
     private val newsRateLimit = RateLimiter<String>(10, TimeUnit.MINUTES)
 
@@ -34,13 +35,13 @@ class NewsRepositoryImpl(
         emitAll(newsDao.getAllFlow().map {
             Resource.Error(throwable.logAndMapToErrorType(), it)
         })
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(dispatcher)
 
     override fun getNewsItem(id: String) = flow<Resource<NewsItem>> {
         emitAll(newsDao.getFlow(id).map { Resource.Success(it) })
     }.catch { throwable ->
         emit(Resource.Error(throwable.logAndMapToErrorType(), null))
-    }.flowOn(Dispatchers.IO)
+    }.flowOn(dispatcher)
 
     companion object {
         const val NEWS_RATE_LIMIT_KEY = "news"

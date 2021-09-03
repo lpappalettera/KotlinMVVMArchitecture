@@ -16,7 +16,7 @@ import javax.inject.Inject
 class NewsOverviewViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel() {
-    
+
     private val _uiState = MutableStateFlow<Resource<List<NewsItem>>>(Resource.Loading())
     val uiState: StateFlow<Resource<List<NewsItem>>> = _uiState
 

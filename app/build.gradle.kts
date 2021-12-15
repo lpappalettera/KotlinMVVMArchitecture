@@ -12,13 +12,13 @@ plugins {
 }
 
 android {
-    compileSdk = 30
+    compileSdk = 31
     buildToolsVersion = "30.0.3"
 
     defaultConfig {
         applicationId = "app.mvvm.architecture"
         minSdk = 26
-        targetSdk = 30
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -100,12 +100,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.fragment:fragment-ktx:1.3.6")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
-    implementation("androidx.browser:browser:1.3.0")
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.4.0")
+    implementation("androidx.browser:browser:1.4.0")
 
     // App Startup
     implementation("androidx.startup:startup-runtime:1.1.0")
@@ -129,7 +126,7 @@ dependencies {
     implementation("androidx.compose.foundation:foundation-layout:$composeVersion")
     implementation("androidx.compose.runtime:runtime:$composeVersion")
     implementation("androidx.compose.animation:animation:$composeVersion")
-    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.activity:activity-compose:1.4.0")
     androidTestImplementation("androidx.compose.ui:ui-test:$composeVersion")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
@@ -143,14 +140,14 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
 
     // Compose Navigation
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha06")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
+    implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-beta01")
 
     // Lifecycle Components
     val lifecycleVersion = "2.3.1"
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
 
     // Accompanist
     val accompanistVersion = "0.12.0"
@@ -160,7 +157,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-coil:$accompanistVersion")
 
     // Logging
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
     // Retrofit
     val retrofitVersion = "2.9.0"
@@ -183,7 +180,7 @@ dependencies {
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 
     // Mockk
-    testImplementation("io.mockk:mockk:1.10.6")
+    testImplementation("io.mockk:mockk:1.12.0")
 
     // Instrumentation testing
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

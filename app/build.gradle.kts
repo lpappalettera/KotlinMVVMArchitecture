@@ -137,7 +137,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:$composeVersion")
 
     // Android Material
-    implementation("com.google.android.material:material:1.4.0")
+    implementation("com.google.android.material:material:1.5.0")
 
     // Compose Navigation
     implementation("androidx.navigation:navigation-compose:2.4.0-beta02")

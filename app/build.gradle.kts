@@ -176,6 +176,9 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
 
+    // Apploket libraries
+    implementation("nl.dictu.common:compose:0.1.1")
+
     // Unit testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.arch.core:core-testing:2.1.0")

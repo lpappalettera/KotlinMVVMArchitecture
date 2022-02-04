@@ -19,6 +19,17 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            name = "Apploket"
+            url = uri("https://lab.dtnr.nl/api/v4/groups/368/-/packages/maven")
+            credentials(HttpHeaderCredentials::class) {
+                name = "Private-Token"
+                value = "${project.property("gitlab.token")}"
+            }
+            authentication {
+                create<HttpHeaderAuthentication>("header")
+            }
+        }
         google()
         mavenCentral()
         jcenter()

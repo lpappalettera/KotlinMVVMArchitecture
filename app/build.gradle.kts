@@ -59,7 +59,15 @@ android {
     }
 
     val localProperties = Properties()
-    localProperties.load(rootProject.file("local.properties").inputStream())
+    localProperties["newsApiKeyDev"] = "dummy"
+    localProperties["newsApiKeyTst"] = "dummy"
+    localProperties["newsApiKeyAcc"] = "dummy"
+    localProperties["newsApiKeyPrd"] = "dummy"
+    try {
+        localProperties.load(rootProject.file("local.properties").inputStream())
+    } catch (exception: java.lang.Exception) {
+        System.err.println("Error opening local.properties")
+    }
 
     val newsApiKey = "NEWS_API_KEY"
 

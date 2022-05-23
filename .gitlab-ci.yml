@@ -42,7 +42,7 @@ lint:debug:
     - !reference [ .project-android-setup, script ]
     - git fetch
     - git merge origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME
-    - ./gradlew -Pci --console=plain :app:lintDevDebug -PbuildDir=lint --stacktrace
+    - ./gradlew -Pci --console=plain :app:lintDevDebug -PbuildDir=lint -Pjob.token=$CI_JOB_TOKEN --stacktrace
   artifacts:
     paths:
       - app/lint/reports/
@@ -62,7 +62,7 @@ assemble:mergeRequest:
     - !reference [ .project-android-setup, script ]
     - git fetch
     - git merge origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME
-    - ./gradlew assembleDevDebug
+    - ./gradlew assembleDevDebug -Pjob.token=$CI_JOB_TOKEN
   artifacts:
     paths:
       - app/build/outputs/
@@ -81,7 +81,7 @@ assemble:
     - mac
   script:
     - !reference [ .project-android-setup, script ]
-    - ./gradlew assembleDevRelease
+    - ./gradlew assembleDevRelease -Pjob.token=$CI_JOB_TOKEN
   artifacts:
     paths:
       - app/build/outputs/
@@ -103,7 +103,7 @@ test:debug:
     - !reference [ .project-android-setup, script ]
     - git fetch
     - if test -z "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"; then echo "No merge request, no need to merge target branch."; else git merge origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME; fi
-    - ./gradlew -Pci --console=plain :app:jacocoTestReportDevDebug
+    - ./gradlew -Pci --console=plain :app:jacocoTestReportDevDebug -Pjob.token=$CI_JOB_TOKEN
   artifacts:
     when: always
     reports:

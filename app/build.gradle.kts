@@ -177,6 +177,8 @@ dependencies {
     kapt("androidx.room:room-compiler:$roomVersion")
 
     // Apploket libraries
+    implementation("nl.dictu.common:rijkstheme:0.1.0")
+    implementation("nl.dictu.common:rijksicons:0.1.0")
     implementation("nl.dictu.common:compose:0.1.1")
 
     // Unit testing

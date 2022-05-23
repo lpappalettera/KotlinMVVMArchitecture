@@ -41,7 +41,6 @@ allprojects {
         }
         google()
         mavenCentral()
-        jcenter()
     }
 }
 

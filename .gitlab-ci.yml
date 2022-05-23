@@ -103,12 +103,11 @@ test:debug:
     - !reference [ .project-android-setup, script ]
     - git fetch
     - if test -z "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"; then echo "No merge request, no need to merge target branch."; else git merge origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME; fi
-    - ./gradlew -Pci --console=plain :app:jacocoTestReportDevDebug -Pjob.token=$CI_JOB_TOKEN
+    - ./gradlew -Pci --console=plain :app:testDevDebug -Pjob.token=$CI_JOB_TOKEN
   artifacts:
     when: always
     reports:
       junit: app/build/test-results/**/TEST-*.xml
     paths:
-      - app/build/reports/jacoco/
       - app/build/test-results/
     expire_in: 1 week

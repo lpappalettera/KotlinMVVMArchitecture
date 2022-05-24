@@ -19,9 +19,28 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            name = "Apploket"
+            url = uri("https://lab.dtnr.nl/api/v4/groups/368/-/packages/maven")
+            if (project.hasProperty("gitlab.token")) {
+                credentials(HttpHeaderCredentials::class) {
+                    name = "Private-Token"
+                    value = "${project.property("gitlab.token")}"
+                }
+            } else if (project.hasProperty("job.token")) {
+                credentials(HttpHeaderCredentials::class) {
+                    name = "Job-Token"
+                    value = "${project.property("job.token")}"
+                }
+            } else {
+                throw GradleException("You need to have a private token to gitlab defined in ~/.gradle/gradle.properties in order to use this repository")
+            }
+            authentication {
+                create<HttpHeaderAuthentication>("header")
+            }
+        }
         google()
         mavenCentral()
-        jcenter()
     }
 }
 

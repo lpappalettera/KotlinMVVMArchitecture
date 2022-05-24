@@ -20,7 +20,6 @@ import app.mvvm.architecture.R
 import app.mvvm.architecture.model.NewsItem
 import app.mvvm.architecture.sampleData.SampleData
 import app.mvvm.architecture.sampleData.newsItems
-import app.mvvm.architecture.ui.components.InsetAwareTopAppBar
 import app.mvvm.architecture.ui.theme.NewsTheme
 import app.mvvm.architecture.util.Resource
 import com.google.accompanist.coil.rememberCoilPainter
@@ -29,6 +28,7 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import nl.dictu.compose.components.InsetAwareTopAppBar
 
 @Composable
 fun NewsItemScreen(

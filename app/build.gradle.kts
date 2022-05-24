@@ -59,7 +59,15 @@ android {
     }
 
     val localProperties = Properties()
-    localProperties.load(rootProject.file("local.properties").inputStream())
+    localProperties["newsApiKeyDev"] = "dummy"
+    localProperties["newsApiKeyTst"] = "dummy"
+    localProperties["newsApiKeyAcc"] = "dummy"
+    localProperties["newsApiKeyPrd"] = "dummy"
+    try {
+        localProperties.load(rootProject.file("local.properties").inputStream())
+    } catch (exception: java.lang.Exception) {
+        System.err.println("Error opening local.properties")
+    }
 
     val newsApiKey = "NEWS_API_KEY"
 
@@ -175,6 +183,11 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
+
+    // Apploket libraries
+    implementation("nl.dictu.common:rijkstheme:0.1.0")
+    implementation("nl.dictu.common:rijksicons:0.1.0")
+    implementation("nl.dictu.common:compose:0.1.1")
 
     // Unit testing
     testImplementation("junit:junit:4.13.2")

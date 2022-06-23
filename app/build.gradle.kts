@@ -59,7 +59,6 @@ android {
     }
 
     val localProperties = Properties()
-    localProperties["newsApiKeyDev"] = "dummy"
     localProperties["newsApiKeyTst"] = "dummy"
     localProperties["newsApiKeyAcc"] = "dummy"
     localProperties["newsApiKeyPrd"] = "dummy"
@@ -73,11 +72,6 @@ android {
 
     flavorDimensions.add("default")
     productFlavors {
-        create("dev") {
-            applicationIdSuffix = ".dev"
-            isDefault = true
-            buildConfigString(newsApiKey, localProperties.getProperty("newsApiKeyDev"))
-        }
         create("tst") {
             applicationIdSuffix = ".tst"
             buildConfigString(newsApiKey, localProperties.getProperty("newsApiKeyTst"))
@@ -105,15 +99,15 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
 
     // Kotlin Serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.0")
+    implementation("androidx.core:core-ktx:1.8.0")
+    implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("androidx.browser:browser:1.4.0")
 
     // App Startup
-    implementation("androidx.startup:startup-runtime:1.1.0")
+    implementation("androidx.startup:startup-runtime:1.1.1")
 
     // Dagger Hilt
     val hiltVersion: String by rootProject.extra
@@ -146,17 +140,17 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:$composeVersion")
 
     // Android Material
-    implementation("com.google.android.material:material:1.5.0")
+    implementation("com.google.android.material:material:1.6.1")
 
     // Compose Navigation
-    implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-beta01")
+    implementation("androidx.navigation:navigation-compose:2.4.2")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     // Lifecycle Components
     val lifecycleVersion = "2.3.1"
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
 
     // Accompanist
     val accompanistVersion = "0.12.0"
@@ -187,14 +181,14 @@ dependencies {
     // Apploket libraries
     implementation("nl.dictu.common:rijkstheme:0.1.0")
     implementation("nl.dictu.common:rijksicons:0.1.0")
-    implementation("nl.dictu.common:compose:0.1.1")
+    implementation("nl.dictu.common:compose:0.2.0")
 
     // Unit testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 
     // Mockk
-    testImplementation("io.mockk:mockk:1.12.0")
+    testImplementation("io.mockk:mockk:1.12.3")
 
     // Instrumentation testing
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

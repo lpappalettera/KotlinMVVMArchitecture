@@ -5,6 +5,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("com.google.devtools.ksp") version "1.6.10-1.0.4"
     id("kotlin-android")
     id("kotlin-parcelize")
     id("kotlinx-serialization")
@@ -26,12 +27,15 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
                     "room.incremental" to "true",
                     "room.expandProjection" to "true"
                 )
             }
         }
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -100,6 +104,9 @@ dependencies {
 
     // Kotlin Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+
+    // KSP
+    implementation("com.google.devtools.ksp:symbol-processing-api:1.6.10-1.0.4")
 
     // AndroidX
     implementation("androidx.core:core-ktx:1.8.0")
@@ -173,10 +180,10 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:$okHttpVersion")
 
     // Room
-    val roomVersion = "2.3.0"
+    val roomVersion = "2.4.2"
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
 
     // Apploket libraries
     implementation("nl.dictu.common:rijkstheme:0.1.0")
